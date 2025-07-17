@@ -1,116 +1,101 @@
-// screens/StudentScreen.js
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import StudentCard from '../components/StudentCard';
+import Imagen from '../assets/images/IMG_1415.jpeg';
 
-const StudentScreen = ({ navigation }) => {
-  const studentData = {
-    fullName: 'Fernando de Jesus Hernandez Morales',
-    age: 18,
-    studentId: '20200335',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-    email: 'fernando.hernandez@estudiante.edu.sv',
-    course: 'Desarrollo de componentes para dispositivos móviles',
-    group: '2A'
-  };
 
-  const goBack = () => {
-    navigation.goBack();
-  };
+const StudentCard = ({ student }) => {
+  image: Imagen
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={['#6366f1', '#4f46e5']}
-        style={styles.gradient}
-      >
-        <ScrollView contentContainerStyle={styles.scrollContent}>
-          <View style={styles.header}>
-            <Icon name="account-circle" size={60} color="#fff" />
-            <Text style={styles.title}>Perfil del Estudiante</Text>
-            <Text style={styles.subtitle}>
-              Información académica personal
-            </Text>
-          </View>
+    <View style={styles.card}>
+      <View style={styles.imageContainer}>
+      <Image
+  source={typeof student.image === 'number' ? student.image : { uri: student.image }}
+  style={styles.profileImage}
+  resizeMode="cover"
+/>
 
-          <StudentCard student={studentData} />
+      </View>
 
-          <TouchableOpacity 
-            style={styles.backButton}
-            onPress={goBack}
-            activeOpacity={0.8}
-          >
-            <LinearGradient
-              colors={['#ef4444', '#dc2626']}
-              style={styles.buttonGradient}
-            >
-              <Icon name="arrow-back" size={24} color="#fff" />
-              <Text style={styles.buttonText}>Volver al Inicio</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </ScrollView>
-      </LinearGradient>
-    </SafeAreaView>
+      <View style={styles.infoContainer}>
+        <Text style={styles.name}>{student.fullName}</Text>
+
+        <View style={styles.infoRow}>
+          <Icon name="badge" size={18} color="#6b7280" />
+          <Text style={styles.infoText}>ID: {student.studentId}</Text>
+        </View>
+
+        <View style={styles.infoRow}>
+          <Icon name="cake" size={18} color="#6b7280" />
+          <Text style={styles.infoText}>Edad: {student.age} años</Text>
+        </View>
+
+        <View style={styles.infoRow}>
+          <Icon name="email" size={18} color="#6b7280" />
+          <Text style={styles.infoText}>{student.email}</Text>
+        </View>
+
+        <View style={styles.infoRow}>
+          <Icon name="school" size={18} color="#6b7280" />
+          <Text style={styles.infoText}>{student.course}</Text>
+        </View>
+
+        <View style={styles.infoRow}>
+          <Icon name="group" size={18} color="#6b7280" />
+          <Text style={styles.infoText}>Grupo: {student.group}</Text>
+        </View>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 25,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 8,
   },
-  gradient: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    padding: 20,
-  },
-  header: {
+  imageContainer: {
     alignItems: 'center',
-    marginBottom: 30,
-    paddingVertical: 20,
+    marginBottom: 20,
   },
-  title: {
-    fontSize: 28,
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 4,
+    borderColor: '#e5e7eb',
+  },
+  infoContainer: {
+    alignItems: 'flex-start',
+  },
+  name: {
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 10,
+    color: '#1f2937',
+    marginBottom: 20,
     textAlign: 'center',
+    width: '100%',
   },
-  subtitle: {
-    fontSize: 16,
-    color: '#e0e7ff',
-    textAlign: 'center',
-    marginTop: 5,
-  },
-  backButton: {
-    marginTop: 30,
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  buttonGradient: {
+  infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
+    marginBottom: 12,
+    width: '100%',
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
+  infoText: {
+    fontSize: 14,
+    color: '#6b7280',
     marginLeft: 10,
+    flex: 1,
   },
 });
 
-export default StudentScreen;
+export default StudentCard;
