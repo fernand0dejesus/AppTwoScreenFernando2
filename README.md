@@ -47,8 +47,8 @@ Esta aplicación React Native cumple con los requisitos del módulo 3.5 "Desarro
 
 ### 1. Clonar el repositorio
 ```bash
-git clone [URL_DEL_REPOSITORIO]
-cd [NOMBRE_DEL_PROYECTO]
+git clone https://github.com/fernand0dejesus/AppTwoScreenFernando2.git
+
 ```
 
 ### 2. Instalar Expo CLI (si no lo tienes instalado)
@@ -145,4 +145,4 @@ Asegúrate de tener la fuente de iconos correctamente vinculada. En Expo, esto s
 Este proyecto es desarrollado con fines educativos para el módulo 3.5 del programa académico.
 
 ## Contacto
-Fernando de Jesus Hernandez Morales - fernando.hernandez@estudiante.edu.sv
+Fernando de Jesus Hernandez Morales - 20200335@ricaldone.edu.sv
